@@ -7,21 +7,31 @@
 # "{ [ ] ( ) }" should return true
 # "{ [ ( ] ) }" should return false
 # "{ [ }" should return false
-openers_and_closers =
-  {
-    '(':')',
-    '{':'}',
-    '[':']'
-  }
-  
-#NOT DONE
+
 
 def closed?(string)
-  string_elements = string.split(' ')
-  string_elements.inject(Hash.new(0)) do |hash, element|
-    hash[element] += 1
-    hash
+  openers_and_closers =
+    { '('=>')',
+      '{'=>'}',
+      '['=>']' }
+
+  openers = openers_and_closers.keys
+  closers = openers_and_closers.values
+
+  string_elements = string.delete(' ').split('')
+  openers_array = []
+
+  string_elements.each do |element|
+    if openers.include?(element)
+      openers_array << element
+    elsif closers.include?(element)
+      element == openers_and_closers[openers_array.last] ? openers_array.pop : false
+    end
   end
+
+  openers_array.empty?
 end
 
-p closed?("{ [ ] ( ) }")
+p closed?("{ [ ] ( ) }") #true
+p closed?("{ [ ( ] ) }") #false
+p closed?("{ [ }") #false
