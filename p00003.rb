@@ -8,4 +8,4 @@ def prime_factors(num)
   [factor] + prime_factors(num / factor)
 end
 
-p prime_factors(600851475143) #[71, 839, 1471, 6857]
+p prime_factors(600851475143).max #[71, 839, 1471, 6857]
