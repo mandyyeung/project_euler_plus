@@ -36,7 +36,7 @@ def format_triplets(num)
       Math.sqrt(p).round(0)
     end
   end
-  triplets[triplets.find_index {|triplet| triplet.inject(:+) == 1000}]
+  triplets[triplets.find_index {|triplet| triplet.inject(:+) == 1000}].inject(:*)
 end
 
-p format_triplets(1000) #[200, 375, 425]
+p format_triplets(1000) #[200, 375, 425] => 31875000
