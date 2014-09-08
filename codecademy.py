@@ -122,3 +122,19 @@ def median(list):
         return list[int(length/2)]
 
 #median([7,12,3,1,6]) => 6
+
+def secret(text):
+  ungarbled = ""
+  for i in range(len(text)):
+      ungarbled += text[-i-1]
+
+  message = ungarbled[::2]
+  print message
+
+#secret("!XeXgXaXsXsXeXmX XtXeXrXcXeXsX XeXhXtX XmXaX XI") => I am the secret message!
+
+def another_secret(text):
+  message = filter(lambda x: x!="X",text)
+  print message
+
+#another_secret("IXXX aXXmX aXXXnXoXXXXXtXhXeXXXXrX sXXXXeXcXXXrXeXt mXXeXsXXXsXaXXXXXXgXeX!XX") => I am another secret message!
