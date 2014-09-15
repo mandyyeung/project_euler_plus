@@ -2,16 +2,21 @@
 #
 # Find the sum of all the primes below two million.
 
-def is_prime?(num)
-  !(3...num).to_a.find_index {|n| num % n == 0}
+def is_prime?(x)
+  return false if (x == 1)
+  check_max = Math.sqrt(x).floor
+  2.upto(check_max) do |i|
+    return false if (x % i == 0)
+  end
+  true
 end
 
-def sum_of_primes(max_num)
+def sum_of_primes(max)
   sum = 2
-  (3..max_num).step(2) do |num|
-    sum += num if is_prime?(num)
+  3.step(max,2) do |i|
+    sum += i if is_prime?(i)
   end
   sum
 end
 
-p sum_of_primes(2_000_000)
+p sum_of_primes(2_000_000) # => 142913828922
